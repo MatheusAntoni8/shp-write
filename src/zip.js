@@ -33,10 +33,14 @@ module.exports = function (
         // geometries
         l.geometries,
         function (err, files) {
-          var fileName =
+          var fileName = 
             options && options.types && options.types[l.type.toLowerCase()]
               ? options.types[l.type.toLowerCase()]
               : l.type;
+
+          if(options && options.defFileName && typeof options.defFileName === 'string' && options.defFileName.length > 0)
+            fileName = options.defFileName;
+          
           zipTarget.file(fileName + ".shp", files.shp.buffer, { binary: true });
           zipTarget.file(fileName + ".shx", files.shx.buffer, { binary: true });
           zipTarget.file(fileName + ".dbf", files.dbf.buffer, { binary: true });
