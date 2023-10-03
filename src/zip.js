@@ -15,6 +15,9 @@ module.exports = function (
     zipTarget = zip.folder(options.folder);
   }
 
+  if(options && options.currentFolder)
+    zipTarget = options.currentFolder;
+  
   var prj = (options && options.prj) ? options.prj : defaultPrj;
 
   [
